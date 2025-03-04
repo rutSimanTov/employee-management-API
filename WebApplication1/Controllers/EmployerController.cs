@@ -23,16 +23,24 @@ namespace WebApplication1.Controllers
 
        
         [HttpGet]
-        public List<Employer> Get()
+        public IActionResult Get()
         {
-            return Employers;
+            return Ok(Employers);
         }
 
        
         [HttpGet("{id}")]
-        public Employer Get(int id)
+        public IActionResult Get(int id)
         {
-            return Employers.FirstOrDefault(e=>e.Id==id);
+            try
+            {
+                Employer e = Employers.First(e => e.Id == id);
+                return Ok(e);
+            }
+            catch {
+                return NotFound("Id is not valid");
+            }
+          
         }
 
         //// GET api/<EmployerController>/find
@@ -51,19 +59,32 @@ namespace WebApplication1.Controllers
         }
 
         [HttpPost("createDataSave/{path}")]
-        public string post(string path)
+        public IActionResult post(string path)
         {
-            using (StreamWriter write = new StreamWriter(path))
+            if (!path.Contains(".txt"))
+                return BadRequest("you shoiuld provide a txt file");
+            try
             {
-                foreach (Employer e in Employers)
+                using (StreamWriter write = new StreamWriter(path))
                 {
-                    write.WriteLine("employer"+e.Id);
-                    write.Write(", name: "+e.Name);
-                    write.Write(", age: " + e.Age);
-                    write.Write(", experiance: " + e.Experiance);
+                    foreach (Employer e in Employers)
+                    {
+                        write.WriteLine();
+                        write.Write("employer" + e.Id);
+                        write.Write(", name: " + e.Name);
+                        write.Write(", age: " + e.Age);
+                        write.Write(", experiance: " + e.Experiance);
+                    }
+                    return Ok("success");
                 }
-                return "success";
+
             }
+            catch(Exception ex) 
+            {
+                return BadRequest(ex.Message);
+            }
+
+
         }
 
         // PUT api/<EmployerController>/5
