@@ -1,5 +1,5 @@
 
-employer1, name: gila, age: 25, experiance: 5
-employer2, name: hila, age: 35, experiance: 10
-employer3, name: chana, age: 27, experiance: 7
-employer4, name: dina, age: 40, experiance: 20
+employee1, name: gila, age: 25, experiance: 5
+employee2, name: hila, age: 35, experiance: 10
+employee3, name: chana, age: 27, experiance: 7
+employee4, name: dina, age: 40, experiance: 20
