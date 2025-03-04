@@ -7,14 +7,14 @@ namespace WebApplication1.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class EmployerController : ControllerBase
+    public class employeeController : ControllerBase
     {
-        static List<Employer> Employers=new List<Employer>() { 
+        static List<employee> employees=new List<employee>() { 
         
-            new Employer(){Id=1,Name="gila" ,Age=25, Experiance=5},
-            new Employer(){Id=2,Name="hila" ,Age=35, Experiance=10},
-            new Employer(){Id=3,Name="chana",Age=27, Experiance=7},
-            new Employer(){Id=4,Name="dina",Age=40,Experiance=20}
+            new employee(){Id=1,Name="gila" ,Age=25, Experiance=5},
+            new employee(){Id=2,Name="hila" ,Age=35, Experiance=10},
+            new employee(){Id=3,Name="chana",Age=27, Experiance=7},
+            new employee(){Id=4,Name="dina",Age=40,Experiance=20}
 
         }
             ;  
@@ -25,7 +25,7 @@ namespace WebApplication1.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            return Ok(Employers);
+            return Ok(employees);
         }
 
        
@@ -34,7 +34,7 @@ namespace WebApplication1.Controllers
         {
             try
             {
-                Employer e = Employers.First(e => e.Id == id);
+                employee e = employees.First(e => e.Id == id);
                 return Ok(e);
             }
             catch {
@@ -43,19 +43,19 @@ namespace WebApplication1.Controllers
           
         }
 
-        //// GET api/<EmployerController>/find
+        //// GET api/<employeeController>/find
         //[HttpGet("find")]
-        //public List<Employer> FindEm(string query)
+        //public List<employee> FindEm(string query)
         //{
         //    return query;
         //}
 
         
         [HttpPost]
-        public void Post([FromBody] Employer e)
+        public void Post([FromBody] employee e)
         {
-            e.Id = Employers[Employers.Count-1].Id+1;
-            Employers.Add(e);
+            e.Id = employees[employees.Count-1].Id+1;
+            employees.Add(e);
         }
 
         [HttpPost("createDataSave/{path}")]
@@ -67,10 +67,10 @@ namespace WebApplication1.Controllers
             {
                 using (StreamWriter write = new StreamWriter(path))
                 {
-                    foreach (Employer e in Employers)
+                    foreach (employee e in employees)
                     {
                         write.WriteLine();
-                        write.Write("employer" + e.Id);
+                        write.Write("employee" + e.Id);
                         write.Write(", name: " + e.Name);
                         write.Write(", age: " + e.Age);
                         write.Write(", experiance: " + e.Experiance);
@@ -87,23 +87,23 @@ namespace WebApplication1.Controllers
 
         }
 
-        // PUT api/<EmployerController>/5
+        // PUT api/<employeeController>/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] Employer e)
+        public void Put(int id, [FromBody] employee e)
         {
-           int Index=Employers.FindIndex(e=>e.Id==id);
-            Employers[Index].Id = e.Id;
-            Employers[Index].Name = e.Name;
-            Employers[Index].Age = e.Age;
-            Employers[Index].Experiance = e.Experiance;
+           int Index=employees.FindIndex(e=>e.Id==id);
+            employees[Index].Id = e.Id;
+            employees[Index].Name = e.Name;
+            employees[Index].Age = e.Age;
+            employees[Index].Experiance = e.Experiance;
         }
 
-        // DELETE api/<EmployerController>/5
+        // DELETE api/<employeeController>/5
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
-           Employer e= Employers.FirstOrDefault(e => e.Id == id);
-           Employers.Remove(e);
+           employee e= employees.FirstOrDefault(e => e.Id == id);
+           employees.Remove(e);
         }
     }
 }
