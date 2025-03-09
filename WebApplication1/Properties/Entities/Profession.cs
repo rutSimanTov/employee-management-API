@@ -1,6 +1,6 @@
 ﻿namespace WebApplication1.Properties.Entities
 {
-    public class Proffession
+    public class Profession
     {
          public int Id { get; set; }
 

@@ -9,28 +9,28 @@ namespace WebApplication1.Controllers
     [ApiController]
     public class employeeController : ControllerBase
     {
-        static List<employee> employees=new List<employee>() { 
-        
-            new employee(){Id=1,Name="gila" ,Age=25, Experiance=5},
-            new employee(){Id=2,Name="hila" ,Age=35, Experiance=10},
-            new employee(){Id=3,Name="chana",Age=27, Experiance=7},
-            new employee(){Id=4,Name="dina",Age=40,Experiance=20}
+        static List<employee> employees = new List<employee>() {
+
+            new employee(){Id=1,Name="gila" ,Age=25, Experience=5},
+            new employee(){Id=2,Name="hila" ,Age=35, Experience=10},
+            new employee(){Id=3,Name="chana",Age=27, Experience=7},
+            new employee(){Id=4,Name="dina",Age=40,Experience=20}
 
         }
-            ;  
+            ;
 
 
 
-       
+
         [HttpGet]
         public IActionResult Get()
         {
             return Ok(employees);
         }
 
-       
+
         [HttpGet("{id}")]
-        public IActionResult Get(int id)
+        public IActionResult GetById(int id)
         {
             try
             {
@@ -40,8 +40,24 @@ namespace WebApplication1.Controllers
             catch {
                 return NotFound("Id is not valid");
             }
-          
+
         }
+
+        [HttpGet("GetByExperience/{experience}")]
+        public IActionResult GetByExperience(int experience)
+        {
+            try
+            {
+                List<employee> goodE = employees.FindAll(e => e.Experience == experience);
+                return Ok(goodE);
+            }
+            catch
+            {
+                return NotFound("no employee with this experience");
+            }
+
+        }
+
 
         //// GET api/<employeeController>/find
         //[HttpGet("find")]
@@ -73,7 +89,7 @@ namespace WebApplication1.Controllers
                         write.Write("employee" + e.Id);
                         write.Write(", name: " + e.Name);
                         write.Write(", age: " + e.Age);
-                        write.Write(", experiance: " + e.Experiance);
+                        write.Write(", experience: " + e.Experience);
                     }
                     return Ok("success");
                 }
@@ -95,7 +111,7 @@ namespace WebApplication1.Controllers
             employees[Index].Id = e.Id;
             employees[Index].Name = e.Name;
             employees[Index].Age = e.Age;
-            employees[Index].Experiance = e.Experiance;
+            employees[Index].Experience = e.Experience;
         }
 
         // DELETE api/<employeeController>/5

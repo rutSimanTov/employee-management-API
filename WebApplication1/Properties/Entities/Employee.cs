@@ -7,7 +7,7 @@
 
         public int Age { get; set; }
 
-        public int Experiance { get; set; }
+        public int Experience  { get; set; }
 
        
 

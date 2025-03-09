@@ -1,0 +1,5 @@
+
+employee1, name: gila, age: 25, experience: 5
+employee2, name: hila, age: 35, experience: 10
+employee3, name: chana, age: 27, experience: 7
+employee4, name: dina, age: 40, experience: 20
