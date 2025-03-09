@@ -9,3 +9,11 @@ export const getAllEmployees = async () => {
     }
     catch (e) { throw e };
 }
+
+export const getAllProfession = async () => {
+    try {
+        const res = await axios.get(`${url}/profession`);
+        return res.data
+    }
+    catch (e) { throw e };
+}
