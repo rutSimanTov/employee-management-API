@@ -13,10 +13,10 @@ namespace WebApplication1.Controllers
 
         static List<Profession> profession = new List<Profession>() {
 
-            new Profession(){Id=1,EmployeeId=1 ,subject="Java"},
-            new Profession(){Id=2,EmployeeId=1 ,subject="C#"},
-            new Profession(){Id=3,EmployeeId=2,subject="Python"},
-            new Profession(){Id=4,EmployeeId=3,subject="React"}
+            new Profession(){Id=1,EmployeeId=1 ,Subject="Java"},
+            new Profession(){Id=2,EmployeeId=1 ,Subject="C#"},
+            new Profession(){Id=3,EmployeeId=2,Subject="Python"},
+            new Profession(){Id=4,EmployeeId=3,Subject="React"}
 
         };
 
@@ -75,7 +75,7 @@ namespace WebApplication1.Controllers
             {
                 p2.Id=p1.Id;
                 p2.EmployeeId=p1.EmployeeId;
-                p2.subject=p1.subject;
+                p2.Subject=p1.Subject;
             }
 
         }
